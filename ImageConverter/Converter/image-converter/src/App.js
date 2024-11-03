@@ -66,6 +66,20 @@ function App() {
             {convertedImage && (
                 <div>
                     <img src={`data:image/jpeg;base64,${convertedImage}`} alt="Converted" style={{ maxWidth: '100%', maxHeight: '400px' }} />
+
+                    {/* Download Button */}
+                    <div style={{ textAlign: 'center', marginTop: '10px' }}>
+                      <a 
+                        href={`data:image/jpeg;base64,${convertedImage}`} 
+                        download="converted_image.jpg" 
+                        style={{ display: 'inline-block', padding: '10px 20px', backgroundColor: '#e687aa', color: '#fff', textDecoration: 'none', borderRadius: '5px', fontSize: '16px' }}
+                      >
+                      Download Converted Image
+                      </a>
+                    </div>
+
+
+
                     <h2>Base64 Encoded JPEG String:</h2>
                     <textarea 
                         readOnly 

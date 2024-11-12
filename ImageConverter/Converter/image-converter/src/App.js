@@ -7,44 +7,41 @@ function App() {
     const [message, setMessage] = useState('');
 
     const handleFileChange = (e) => {
-        setImage(e.target.files[0]); // set the selected image file
-        setConvertedImage(null); // reset converted image
-        setMessage(''); // reset message
+        setImage(e.target.files[0]);
+        setConvertedImage(null);
+        setMessage('');
     };
 
     const handleSubmit = async (e) => {
-      e.preventDefault(); // prevent the default form submission
+      e.preventDefault();
 
-      // error checking if an image is not selected
       if (!image) {
           setMessage('Please select an image to convert.'); 
           return; 
       }
   
-      const reader = new FileReader(); // FileReader to read the image file
+      const reader = new FileReader();
       reader.onloadend = async () => {
-          const base64Image = reader.result.split(',')[1]; // extract the Base64 string
+          const base64Image = reader.result.split(',')[1];
   
           try {
               const response = await fetch('https://hrqenyqyy6.execute-api.us-west-2.amazonaws.com/prod/convert', {
                   method: 'POST',
-                  body: JSON.stringify({ body: base64Image }), // send Base64 image to the API
+                  body: JSON.stringify({ body: base64Image }),
                   headers: {
                       'Content-Type': 'application/json',
                   },
               });
   
-              // response to the console for debugging
-              const data = await response.json(); // parse the JSON response
+              const data = await response.json();
               console.log('API Response:', data); 
   
               if (!response.ok) {
                   throw new Error('Network response was not ok'); 
               }
   
-              // extract the base64 image from the body of the response
-              const base64String = data.body; // extract the base64 string
-              setConvertedImage(base64String); // set the converted image 
+              const base64String = data.body;
+              setConvertedImage(base64String);
               setMessage('Image converted successfully!');
           } catch (error) {
               console.error('Error:', error); 
@@ -52,41 +49,32 @@ function App() {
           }
       };
   
-      reader.readAsDataURL(image); // read the selected image as a Data URL
+      reader.readAsDataURL(image);
   };  
 
     return (
-        <div>
-            <h1>Image Converter</h1>
+        <div className="container">
+            <h1>Webp To Jpeg Image Converter</h1>
             <form onSubmit={handleSubmit}>
                 <input type="file" accept="image/webp" onChange={handleFileChange} />
                 <button type="submit">Convert Image</button>
             </form>
-            {message && <p style={{ color: convertedImage ? 'green' : 'red' }}>{message}</p>} 
+            <div style={{ textAlign: 'center' }}>
+              {message && <p style={{ color: convertedImage ? 'green' : 'red' }}>{message}</p>} 
+            </div>
             {convertedImage && (
                 <div>
                     <img src={`data:image/jpeg;base64,${convertedImage}`} alt="Converted" style={{ maxWidth: '100%', maxHeight: '400px' }} />
 
-                    {/* Download Button */}
                     <div style={{ textAlign: 'center', marginTop: '10px' }}>
                       <a 
                         href={`data:image/jpeg;base64,${convertedImage}`} 
                         download="converted_image.jpg" 
-                        style={{ display: 'inline-block', padding: '10px 20px', backgroundColor: '#e687aa', color: '#fff', textDecoration: 'none', borderRadius: '5px', fontSize: '16px' }}
+                        style={{ display: 'inline-block', padding: '10px 20px', backgroundColor: '#5c6bc0', color: '#fff', textDecoration: 'none', borderRadius: '5px', fontSize: '16px', hover: '#3949ab' }}
                       >
                       Download Converted Image
                       </a>
                     </div>
-
-
-
-                    <h2>Base64 Encoded JPEG String:</h2>
-                    <textarea 
-                        readOnly 
-                        value={`data:image/jpeg;base64,${convertedImage}`} 
-                        rows={5} 
-                        style={{ width: '100%', fontFamily: 'monospace', whiteSpace: 'pre', overflow: 'auto' }} 
-                    />
                 </div>
             )}
         </div>

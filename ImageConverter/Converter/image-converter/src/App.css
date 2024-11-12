@@ -1,75 +1,91 @@
+/* App.css */
+
 body {
-  font-family: Arial, sans-serif;
-  background-color: #ffebee; 
-  margin: 0;
-  padding: 20px;
   display: flex;
-  justify-content: center; 
-  align-items: center; 
-  height: 100vh; 
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f8ff;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
 }
 
 h1 {
+  font-family: 'Poppins', sans-serif;
+  color: #333;
   text-align: center;
-  color: #e981a7; 
-}
-
-h2 {
-  text-align: center;
-  color: #e981a7; 
+  font-size: 2em;
+  margin-bottom: 20px;
+  align-items: center;
 }
 
 form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #fce4ec; 
+  gap: 15px;
   padding: 20px;
-  border-radius: 10px; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 500px;
 }
 
 input[type="file"] {
-  margin: 10px 0;
-  padding: 10px;
-  border: 2px solid #e890b0;
+  padding: 8px;
+  border: 1px solid #ddd;
   border-radius: 5px;
-  outline: none; 
+  cursor: pointer;
 }
 
 button {
+  background-color: #5c6bc0;
+  color: #fff;
   padding: 10px 20px;
+  font-size: 16px;
   border: none;
   border-radius: 5px;
-  background-color: #e687aa; 
-  color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background-color: #e089ac;
+  background-color: #3949ab;
 }
 
-.message {
+p {
   text-align: center;
-  font-weight: bold;
+  font-size: 1.1em;
 }
 
 img {
   display: block;
   margin: 20px auto;
-  max-width: 100%;
-  border: 2px solid #e385a7; 
-  border-radius: 5px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-textarea {
-  width: 100%;
-  font-family: monospace;
-  white-space: pre;
-  overflow: auto;
-  border: 2px solid #e280a4;
+a {
+  background-color: #e687aa;
+  color: #fff;
+  padding: 10px 20px;
   border-radius: 5px;
-  padding: 10px;
+  font-size: 16px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+a:hover {
+  background-color: #d4648f;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; 
+  text-align: center;
+  padding: 20px;
 }
